@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="MainTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-01-05T20:18:01" hostname="Jordans-MacBook-Pro.local" time="0.02">
+  <properties/>
+  <testcase name="runMain_CorrectOutput()" classname="MainTest" time="0.02"/>
+  <system-out><![CDATA[ready
+No line found
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

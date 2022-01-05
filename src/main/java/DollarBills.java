@@ -1,15 +1,15 @@
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 public class DollarBills {
-    @JsonProperty("one")
+
     private double one;
-    @JsonProperty("two")
+
     private int two;
-    @JsonProperty("five")
+
     private double five;
-    @JsonProperty("ten")
+
     private int ten;
-    @JsonProperty("twenty")
+
     private int twenty;
 
     public double getOne() {

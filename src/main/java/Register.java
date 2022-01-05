@@ -1,8 +1,8 @@
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-public abstract class Register {
 
-    @JsonProperty("dollarBills")
+public class Register {
+
+
     private DollarBills dollarBills;
 
     public DollarBills getDollarBills() {
