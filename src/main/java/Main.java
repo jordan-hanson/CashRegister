@@ -8,16 +8,11 @@ public class Main {
                 //Build a CashDrawer Object and Define Default values of 0
                 CashDrawer cashDrawer = new CashDrawer(0, 0, 0, 0, 0);
 
-                // Set the first Value to Test
-                int dollarAmount = 10;
-                cashDrawer.setTwenty(dollarAmount);
-
                 // Update the Total Property on the CashDrawer Object
                 cashDrawer.setTotal();
 
-                //
+                // Show the totals
                 String showOutput = cashDrawer.toString();
                 System.out.println(showOutput);
-
         }
 }

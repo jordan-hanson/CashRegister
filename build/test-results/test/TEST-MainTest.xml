@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="MainTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-01-16T22:36:54" hostname="Jordans-MBP.home" time="0.021">
+<testsuite name="MainTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-01-16T23:24:26" hostname="Jordans-MBP.home" time="0.032">
   <properties/>
-  <testcase name="runMain_CorrectOutput()" classname="MainTest" time="0.021"/>
-  <system-out><![CDATA[ready
-CashRegister@45845dd0
-]]></system-out>
+  <testcase name="runMain_CorrectOutput()" classname="MainTest" time="0.032"/>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
