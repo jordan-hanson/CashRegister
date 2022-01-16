@@ -20,7 +20,7 @@ public class CashDrawer {
         this.one = one;
     }
     // Add Getter and Setter methods for the properties
-    // Include a putAmount, takeAmount, and showCashDrawer
+    // Include a putAmount, takeAmount
 
     public int getTwenty() {
         return twenty;
@@ -67,7 +67,7 @@ public class CashDrawer {
     }
 
     public void setTotal() {
-        this.total = twenty + ten + five + two + one;
+        this.total = (20 * twenty)  + (10 * ten) + (5 * five) + (2 * two) + (1 * one);
     }
 
     @Override

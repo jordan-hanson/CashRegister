@@ -5,14 +5,9 @@ public class Main {
                 System.out.println("ready");
                 // TODO update the property access modifiers of each class object
 
-                //Build a CashDrawer Object and Define Default values of 0
-                CashDrawer cashDrawer = new CashDrawer(0, 0, 0, 0, 0);
-
-                // Update the Total Property on the CashDrawer Object
-                cashDrawer.setTotal();
-
-                // Show the totals
-                String showOutput = cashDrawer.toString();
-                System.out.println(showOutput);
+                //Build a CashDrawer Object int values all default to 0
+                CashDrawer cashDrawer = new CashDrawer();
+                String showCashDrawer = cashDrawer.toString();
+                System.out.println(showCashDrawer);
         }
 }
