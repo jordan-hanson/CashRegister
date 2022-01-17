@@ -14,6 +14,6 @@ Quit - Exit the program
 
 Key Points:
 - Run from the command line
-- You can use junit, spock, or mokito in testing.
+- Includes junit and hamcrest for testing.
 - Include tests that exercise functionality.
 - Include Test case: How to make $8 change if you have $13 in the cash register
