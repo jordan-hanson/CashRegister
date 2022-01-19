@@ -1,5 +1,6 @@
 public class CashDrawer {
     // Include Cash values to build a CashDrawer
+    long id;
     int twenty;
     int ten;
     int five;
@@ -10,6 +11,18 @@ public class CashDrawer {
     //Build out two constructors Include all properties, and a Default
 
     public CashDrawer() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     public CashDrawer(int twenty, int ten, int five, int two, int one) {
@@ -103,4 +116,5 @@ public class CashDrawer {
                 " " + two +
                 " " + one;
     }
+
 }
