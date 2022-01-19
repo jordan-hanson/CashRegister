@@ -31,7 +31,12 @@ public class Main {
                 cashDrawer.takeBillsFromRegister(1, 4, 3, 0, 10);
                 cashDrawer.setTotal();
                 showCashDrawer = cashDrawer.toString();
-                System.out.println(showCashDrawer);
+                System.out.println(showCashDrawer); // $43 1 0 3 4 0
+
+                System.out.println();
+                System.out.println("change 11");
+                System.out.println(cashDrawer.getTotal());
+
 
                 Scanner scanner = new Scanner(System.in);
 

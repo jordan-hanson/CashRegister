@@ -1,5 +1,5 @@
 public class CashDrawer {
-    // Include Cash values to build a CashDrawer Array of a Cash Register
+    // Include Cash values to build a CashDrawer
     int twenty;
     int ten;
     int five;
@@ -84,6 +84,14 @@ public class CashDrawer {
         this.five -= five;
         this.two -= two;
         this.one -= one;
+    }
+
+    private boolean getAmountOfEachTotal(int changeAmount){
+        return false;
+    }
+
+    public void makeChange(int changeAmount){
+        getAmountOfEachTotal(changeAmount);
     }
 
     @Override
