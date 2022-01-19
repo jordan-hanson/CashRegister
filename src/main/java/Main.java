@@ -1,7 +1,10 @@
+
+
 import java.util.Scanner;
 
 public class Main {
         public static void main(String[] args){
+
                 System.out.println("ready");
                 System.out.println("");
                 // TODO update the property access modifiers of each class object
@@ -39,6 +42,7 @@ public class Main {
 
 
                 Scanner scanner = new Scanner(System.in);
+
 
         }
 }

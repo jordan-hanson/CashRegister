@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.*;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -6,6 +7,7 @@ import java.io.PrintStream;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.containsString;
 
+@SpringBootTest(classes = Main.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class MainTest {
 
