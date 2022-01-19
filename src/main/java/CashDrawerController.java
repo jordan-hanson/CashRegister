@@ -38,4 +38,18 @@ public class CashDrawerController {
 
     }
 
+    @PutMapping(value = "/cashdrawer/{cashdrawerid}", consumes="application/json")
+    public ResponseEntity<String> addValueToCashDrawer(@PathVariable CashDrawer cashDrawer, @PathVariable long cashdrawerid)
+    {
+        cashDrawerService.addAmounts(cashDrawer, cashdrawerid);
+        return new ResponseEntity<>(cashDrawer.toString(), HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/cashdrawer/{cashdrawerid}", consumes="application/json")
+    public ResponseEntity<String> takeValueFromCashDrawer(@PathVariable CashDrawer cashDrawer, @PathVariable long cashdrawerid)
+    {
+        cashDrawerService.takeAmounts(cashDrawer, cashdrawerid);
+        return new ResponseEntity<>(cashDrawer.toString(),HttpStatus.OK);
+    }
+
 }
