@@ -21,10 +21,6 @@ public class CashDrawer {
         this.id = id;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
-    }
-
     public CashDrawer(int twenty, int ten, int five, int two, int one) {
         this.twenty = twenty;
         this.ten = ten;
