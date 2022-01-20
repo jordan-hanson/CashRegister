@@ -4,12 +4,21 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
-group 'org.example'
+group 'com.example'
 version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
+
+//bootJar {
+//    mainClass = "com.example.Main"
+//}
+//
+//application{
+//    mainClassName = "com.example.main.Main"
+//}
+
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'

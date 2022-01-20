@@ -43,7 +43,7 @@ public class MainTest {
     }
     private static void runMain() {
         try {
-            com.example.main.Main.main(new String[]{});
+            Main.main(new String[]{});
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
