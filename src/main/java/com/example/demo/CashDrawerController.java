@@ -1,3 +1,5 @@
+package com.example.demo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -45,10 +47,10 @@ public class CashDrawerController {
         return new ResponseEntity<>(cashDrawer.toString(), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/cashdrawer/{cashdrawerid}", consumes="application/json")
-    public ResponseEntity<String> takeValueFromCashDrawer(@PathVariable CashDrawer cashDrawer, @PathVariable long cashdrawerid)
+    @PutMapping(value = "/cashdrawer/{id}", consumes="application/json")
+    public ResponseEntity<String> takeValueFromCashDrawer(@PathVariable CashDrawer cashDrawer, @PathVariable long id)
     {
-        cashDrawerService.takeAmounts(cashDrawer, cashdrawerid);
+        cashDrawerService.takeAmounts(cashDrawer, id);
         return new ResponseEntity<>(cashDrawer.toString(),HttpStatus.OK);
     }
 

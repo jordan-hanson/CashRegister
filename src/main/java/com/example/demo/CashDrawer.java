@@ -1,5 +1,7 @@
+package com.example.demo;
+
 public class CashDrawer {
-    // Include Cash values to build a CashDrawer
+    // Include Cash values to build a com.example.demo.CashDrawer
     private long id;
     private int twenty;
     private int ten;
