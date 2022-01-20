@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.main;
 
 public class CashDrawer {
     // Include Cash values to build a com.example.demo.CashDrawer

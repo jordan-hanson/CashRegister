@@ -1,4 +1,4 @@
-import com.example.demo.Main;
+import com.example.main.Main;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -43,7 +43,7 @@ public class MainTest {
     }
     private static void runMain() {
         try {
-            com.example.demo.Main.main(new String[]{});
+            com.example.main.Main.main(new String[]{});
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.main;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -14,6 +14,11 @@ public class CashDrawerController {
 
     @Autowired
     private CashDrawerService cashDrawerService;
+
+    @GetMapping(value = "/")
+    public String getTest(){
+        return "Your application is running";
+    }
 
     @GetMapping(value = "/cashdrawer")
     public String getCashDrawer(@PathVariable CashDrawer cashDrawer)
