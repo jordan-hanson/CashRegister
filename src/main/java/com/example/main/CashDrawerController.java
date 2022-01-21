@@ -15,11 +15,6 @@ public class CashDrawerController {
     @Autowired
     private CashDrawerService cashDrawerService;
 
-    @GetMapping(value = "/")
-    public String getTest(){
-        return "Your application is running";
-    }
-
     @GetMapping(value = "/cashdrawers/cashdrawer/{cashdrawerid}")
     public ResponseEntity<?> getCashDrawerById(@PathVariable long cashdrawerid)
     {
@@ -29,16 +24,16 @@ public class CashDrawerController {
 
 
     @PostMapping(value = "/cashdrawers/cashdrawer", consumes="applicaton/json")
-    public ResponseEntity<?> addNewCashDrawer(@RequestBody CashDrawer newCashDrawer)
+    public ResponseEntity<?> addNewCashDrawer(@RequestBody CashDrawer cashDrawer)
     {
-        newCashDrawer.setId(0);
-        newCashDrawer = cashDrawerService.save(newCashDrawer);
+        cashDrawer.setId(0);
+        cashDrawer = cashDrawerService.save(cashDrawer);
 
         // set the location header for the newly created cash drawer
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newCashDrawerURI = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{cashdrawerid}")
-                .buildAndExpand(newCashDrawer.getId())
+                .buildAndExpand(cashDrawer.getId())
                 .toUri();
         responseHeaders.setLocation(newCashDrawerURI);
         return new ResponseEntity<>(null,
