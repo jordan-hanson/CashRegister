@@ -1,7 +1,5 @@
 package com.example.main;
 
-import java.util.EmptyStackException;
-
 public class CashDrawer {
 
     private long id;
