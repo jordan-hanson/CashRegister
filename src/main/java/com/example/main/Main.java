@@ -1,5 +1,6 @@
 package com.example.main;
 
+import com.example.main.exceptions.InvalidAmountException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -36,14 +37,14 @@ public class Main {
                 System.out.println(showCashDrawer); // $128 2 4 6 4 10
 
                 System.out.println();
-                System.out.println("take 1 4 3 0 10");
+                System.out.println("take 1 4 3 0 8");
                 cashDrawer.takeBillsFromRegister(1, 4, 3, 0, 8);
                 cashDrawer.setTotal();
                 showCashDrawer = cashDrawer.toString();
                 System.out.println(showCashDrawer); // $43 1 0 3 4 0
 
                 System.out.println();
-                System.out.println("change 11");
+                System.out.println("change 13");
                 CashDrawer changeFromCashDrawer = new CashDrawer();
                 int[] changeLeftOver = cashDrawer.makeChange(13);
                 cashDrawer.takeBillsFromRegister(changeLeftOver[0], changeLeftOver[1], changeLeftOver[2], changeLeftOver[3], changeLeftOver[4]);

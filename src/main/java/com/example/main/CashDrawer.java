@@ -1,5 +1,7 @@
 package com.example.main;
 
+import com.example.main.exceptions.InvalidAmountException;
+
 public class CashDrawer {
 
     private long id;

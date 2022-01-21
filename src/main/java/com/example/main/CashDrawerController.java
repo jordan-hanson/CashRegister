@@ -20,13 +20,15 @@ public class CashDrawerController {
         return "Your application is running";
     }
 
-    @GetMapping(value = "/cashdrawer")
-    public String getCashDrawer(@PathVariable CashDrawer cashDrawer)
+    @GetMapping(value = "/cashdrawers/cashdrawer/{cashdrawerid}")
+    public ResponseEntity<?> getCashDrawerById(@PathVariable long cashdrawerid)
     {
-        return cashDrawer.toString();
+        CashDrawer cashDrawer = cashDrawerService.findCashDrawerById(cashdrawerid);
+        return new ResponseEntity<>(cashDrawer, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/cashdrawer", consumes="applicaton/json")
+
+    @PostMapping(value = "/cashdrawers/cashdrawer", consumes="applicaton/json")
     public ResponseEntity<?> addNewCashDrawer(@RequestBody CashDrawer newCashDrawer)
     {
         newCashDrawer.setId(0);
@@ -45,14 +47,14 @@ public class CashDrawerController {
 
     }
 
-    @PutMapping(value = "/cashdrawer/{cashdrawerid}", consumes="application/json")
+    @PutMapping(value = "/cashdrawers/cashdrawer/{cashdrawerid}", consumes="application/json")
     public ResponseEntity<String> addValueToCashDrawer(@PathVariable CashDrawer cashDrawer, @PathVariable long cashdrawerid)
     {
         cashDrawerService.addAmounts(cashDrawer, cashdrawerid);
         return new ResponseEntity<>(cashDrawer.toString(), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/cashdrawer/{id}", consumes="application/json")
+    @PutMapping(value = "/cashdrawers/cashdrawer/{id}", consumes="application/json")
     public ResponseEntity<String> takeValueFromCashDrawer(@PathVariable CashDrawer cashDrawer, @PathVariable long id)
     {
         cashDrawerService.takeAmounts(cashDrawer, id);
