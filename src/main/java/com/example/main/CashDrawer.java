@@ -1,7 +1,9 @@
 package com.example.main;
 
+import java.util.EmptyStackException;
+
 public class CashDrawer {
-    // Include Cash values to build a com.example.demo.CashDrawer
+
     private long id;
     private int twenty;
     private int ten;
@@ -10,7 +12,6 @@ public class CashDrawer {
     private int one;
     private int total;
 
-    //Build out two constructors Include all properties, and a Default
 
     public CashDrawer() {
     }
@@ -30,8 +31,6 @@ public class CashDrawer {
         this.two = two;
         this.one = one;
     }
-    // Add Getter and Setter methods for the properties
-    // Include a putAmount, takeAmount
 
     public int getTwenty() {
         return twenty;
@@ -97,34 +96,41 @@ public class CashDrawer {
         this.one -= one;
     }
 
-    public int makeChange(int changeAmount, CashDrawer changeFromCashDrawerAmounts){
+    public boolean validateReturn(int changeLeftOver){
+        if(changeLeftOver > 0){
+            return false;
+        } return true;
+    }
+
+    public int[] makeChange(int changeAmount) throws InvalidAmountException {
+        int[] amountsToStore = new int[5];
         while(changeAmount >= 20 && this.twenty -1 > 0) {
             changeAmount -= 20;
-            this.twenty--;
-            changeFromCashDrawerAmounts.setTwenty(changeFromCashDrawerAmounts.getTwenty() + 1);
+            amountsToStore[0] = amountsToStore[0]+1;
         }
         while(changeAmount >= 10 && this.ten -1 > 0) {
             changeAmount -= 10;
-            this.ten--;
-            changeFromCashDrawerAmounts.setTen(changeFromCashDrawerAmounts.getTen() + 1);
+            amountsToStore[1] = amountsToStore[1]+1;
         }
         while(changeAmount >= 5 && this.five -1 > 0) {
             changeAmount -= 5;
-            this.five--;
-            changeFromCashDrawerAmounts.setFive(changeFromCashDrawerAmounts.getFive() + 1);
+            amountsToStore[2] = amountsToStore[2]+1;
         }
         while(changeAmount >= 2 && this.two -1 > 0) {
             changeAmount -= 2;
-            this.two--;
-            changeFromCashDrawerAmounts.setTwo(changeFromCashDrawerAmounts.getTwo() + 1);
+            amountsToStore[3] = amountsToStore[3]+1;
         }
         while(changeAmount >= 1 && this.one -1 > 0) {
             changeAmount -= 1;
-            this.one--;
-            changeFromCashDrawerAmounts.setOne(changeFromCashDrawerAmounts.getOne() + 1);
+            amountsToStore[4] = amountsToStore[4]+1;
         }
-        int changeLeftOver = changeAmount;
-        return changeLeftOver;
+        boolean isReturnAvailable = validateReturn(changeAmount);
+        if(isReturnAvailable){
+            return amountsToStore;
+        } else {
+            throw new InvalidAmountException(changeAmount);
+        }
+
     }
 
     public String changeDrawerString(){

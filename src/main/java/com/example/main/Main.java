@@ -8,7 +8,7 @@ import java.util.Scanner;
 @SpringBootApplication
 public class Main {
 
-        public static void main(String[] args) {
+        public static void main(String[] args) throws InvalidAmountException {
                 SpringApplication.run(Main.class,
                         args);
 
@@ -37,7 +37,7 @@ public class Main {
 
                 System.out.println();
                 System.out.println("take 1 4 3 0 10");
-                cashDrawer.takeBillsFromRegister(1, 4, 3, 0, 10);
+                cashDrawer.takeBillsFromRegister(1, 4, 3, 0, 8);
                 cashDrawer.setTotal();
                 showCashDrawer = cashDrawer.toString();
                 System.out.println(showCashDrawer); // $43 1 0 3 4 0
@@ -45,13 +45,14 @@ public class Main {
                 System.out.println();
                 System.out.println("change 11");
                 CashDrawer changeFromCashDrawer = new CashDrawer();
-                int changeLeftOver = cashDrawer.makeChange(11, changeFromCashDrawer);
+                int[] changeLeftOver = cashDrawer.makeChange(13);
+                cashDrawer.takeBillsFromRegister(changeLeftOver[0], changeLeftOver[1], changeLeftOver[2], changeLeftOver[3], changeLeftOver[4]);
+                changeFromCashDrawer.putBillsInRegister(changeLeftOver[0], changeLeftOver[1], changeLeftOver[2], changeLeftOver[3], changeLeftOver[4]);
                 String showChangeAmountDrawer = changeFromCashDrawer.changeDrawerString();
                 System.out.println(showChangeAmountDrawer);
                 cashDrawer.setTotal();
                 showCashDrawer = cashDrawer.toString();
                 System.out.println(showCashDrawer);// $33 1 0 1 4 0
-                System.out.println(changeLeftOver);// $1 left over
 
 
                 Scanner scanner = new Scanner(System.in);
