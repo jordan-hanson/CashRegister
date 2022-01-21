@@ -5,7 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
+@Transactional
+@Service(value = "cashdrawerservice")
 public class CashDrawerService {
 
     @Autowired
@@ -39,6 +40,7 @@ public class CashDrawerService {
         return cashDrawerRepos.save(newCashDrawer);
     }
 
+    @Transactional
     public CashDrawer addAmounts(CashDrawer cashDrawer, long cashdrawerid) {
 
         CashDrawer currentCashDrawer = findCashDrawerById(cashdrawerid);
@@ -56,6 +58,7 @@ public class CashDrawerService {
 
     }
 
+    @Transactional
     public CashDrawer takeAmounts(CashDrawer cashDrawer, long id) {
         CashDrawer currentCashDrawer = findCashDrawerById(id);
 
@@ -69,6 +72,12 @@ public class CashDrawerService {
         );
 
         return cashDrawerRepos.save(currentCashDrawer);
+    }
+
+    @Transactional
+    public void deleteAll()
+    {
+        cashDrawerRepos.deleteAll();
     }
 
 

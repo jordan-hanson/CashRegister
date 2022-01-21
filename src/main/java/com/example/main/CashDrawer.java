@@ -1,15 +1,35 @@
 package com.example.main;
 
 import com.example.main.exceptions.InvalidAmountException;
+import com.sun.istack.NotNull;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "cashdrawers")
 public class CashDrawer {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotNull
+    @Column
     private int twenty;
+    @NotNull
+    @Column
     private int ten;
+    @NotNull
+    @Column
     private int five;
+    @NotNull
+    @Column
     private int two;
+    @NotNull
+    @Column
     private int one;
+    @NotNull
+    @Column
     private int total;
 
 
@@ -22,6 +42,10 @@ public class CashDrawer {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     public CashDrawer(int twenty, int ten, int five, int two, int one) {
