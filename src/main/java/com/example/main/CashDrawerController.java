@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -23,7 +24,7 @@ public class CashDrawerController {
     }
 
 
-    @PostMapping(value = "/cashdrawers/cashdrawer", consumes="applicaton/json")
+    @PostMapping(value = "/cashdrawers/cashdrawer", consumes="application/json")
     public ResponseEntity<?> addNewCashDrawer(@RequestBody CashDrawer cashDrawer)
     {
         cashDrawer.setId(0);
@@ -42,18 +43,21 @@ public class CashDrawerController {
 
     }
 
-    @PutMapping(value = "/cashdrawers/cashdrawer/{cashdrawerid}", consumes="application/json")
-    public ResponseEntity<String> addValueToCashDrawer(@PathVariable CashDrawer cashDrawer, @PathVariable long cashdrawerid)
+    @PutMapping(value = "/cashdrawers/cashdrawer/{cashdrawerid}/transactions/{typeOf}", consumes="application/json")
+    public ResponseEntity<String> addValueToCashDrawer(@RequestBody CashDrawer cashDrawer, @PathVariable String typeOf, @PathVariable long cashdrawerid)
     {
-        cashDrawerService.addAmounts(cashDrawer, cashdrawerid);
-        return new ResponseEntity<>(cashDrawer.toString(), HttpStatus.OK);
-    }
 
-    @PutMapping(value = "/cashdrawers/cashdrawer/{id}", consumes="application/json")
-    public ResponseEntity<String> takeValueFromCashDrawer(@PathVariable CashDrawer cashDrawer, @PathVariable long id)
-    {
-        cashDrawerService.takeAmounts(cashDrawer, id);
-        return new ResponseEntity<>(cashDrawer.toString(),HttpStatus.OK);
+        switch(typeOf){
+            case "put":
+                CashDrawer updatedAmountsAddedToCashDrawer = cashDrawerService.addAmounts(cashDrawer, cashdrawerid);
+                return new ResponseEntity<>(updatedAmountsAddedToCashDrawer.toString(), HttpStatus.OK);
+            case "take":
+                CashDrawer updatedAmountsTakenFromCashDrawer = cashDrawerService.takeAmounts(cashDrawer, cashdrawerid);
+                return new ResponseEntity<>(updatedAmountsTakenFromCashDrawer.toString(),HttpStatus.OK);
+            default:
+                return new ResponseEntity<>("Not a valid type", HttpStatus.BAD_REQUEST);
+        }
+
     }
 
 }

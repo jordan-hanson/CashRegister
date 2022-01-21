@@ -53,6 +53,7 @@ public class CashDrawerService {
                 cashDrawer.getTwo(),
                 cashDrawer.getOne()
         );
+        currentCashDrawer.setTotal();
 
         return cashDrawerRepos.save(currentCashDrawer);
 
@@ -70,6 +71,7 @@ public class CashDrawerService {
                 cashDrawer.getTwo(),
                 cashDrawer.getOne()
         );
+        currentCashDrawer.setTotal();
 
         return cashDrawerRepos.save(currentCashDrawer);
     }
