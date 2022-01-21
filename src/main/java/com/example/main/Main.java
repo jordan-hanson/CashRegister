@@ -44,7 +44,14 @@ public class Main {
 
                 System.out.println();
                 System.out.println("change 11");
-                System.out.println(cashDrawer.getTotal());
+                CashDrawer changeFromCashDrawer = new CashDrawer();
+                int changeLeftOver = cashDrawer.makeChange(11, changeFromCashDrawer);
+                String showChangeAmountDrawer = changeFromCashDrawer.changeDrawerString();
+                System.out.println(showChangeAmountDrawer);
+                cashDrawer.setTotal();
+                showCashDrawer = cashDrawer.toString();
+                System.out.println(showCashDrawer);// $33 1 0 1 4 0
+                System.out.println(changeLeftOver);// $1 left over
 
 
                 Scanner scanner = new Scanner(System.in);

@@ -97,12 +97,42 @@ public class CashDrawer {
         this.one -= one;
     }
 
-    private boolean getAmountOfEachTotal(int changeAmount){
-        return false;
+    public int makeChange(int changeAmount, CashDrawer changeFromCashDrawerAmounts){
+        while(changeAmount >= 20 && this.twenty -1 > 0) {
+            changeAmount -= 20;
+            this.twenty--;
+            changeFromCashDrawerAmounts.setTwenty(changeFromCashDrawerAmounts.getTwenty() + 1);
+        }
+        while(changeAmount >= 10 && this.ten -1 > 0) {
+            changeAmount -= 10;
+            this.ten--;
+            changeFromCashDrawerAmounts.setTen(changeFromCashDrawerAmounts.getTen() + 1);
+        }
+        while(changeAmount >= 5 && this.five -1 > 0) {
+            changeAmount -= 5;
+            this.five--;
+            changeFromCashDrawerAmounts.setFive(changeFromCashDrawerAmounts.getFive() + 1);
+        }
+        while(changeAmount >= 2 && this.two -1 > 0) {
+            changeAmount -= 2;
+            this.two--;
+            changeFromCashDrawerAmounts.setTwo(changeFromCashDrawerAmounts.getTwo() + 1);
+        }
+        while(changeAmount >= 1 && this.one -1 > 0) {
+            changeAmount -= 1;
+            this.one--;
+            changeFromCashDrawerAmounts.setOne(changeFromCashDrawerAmounts.getOne() + 1);
+        }
+        int changeLeftOver = changeAmount;
+        return changeLeftOver;
     }
 
-    public void makeChange(int changeAmount){
-        getAmountOfEachTotal(changeAmount);
+    public String changeDrawerString(){
+        return " " + twenty +
+                " " + ten +
+                " " + five +
+                " " + two +
+                " " + one;
     }
 
     @Override
