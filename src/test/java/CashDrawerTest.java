@@ -70,7 +70,7 @@ public class CashDrawerTest {
         assertTrue(stringValue.contains(String.valueOf(TEST_TWO)));
         assertTrue(stringValue.contains(String.valueOf(TEST_ONE)));
 
-        // testing toString()
+        // testing changeDrawertoString()
         Method changeDrawerToStringMethod = CashDrawer.class.getMethod("changeDrawerString");
         String changeToString = (String) changeDrawerToStringMethod.invoke(cashDrawer);
         assertTrue(changeToString.contains("0 0 0 0 0"));
@@ -89,10 +89,13 @@ public class CashDrawerTest {
         // CashDrawer putBillsInCashDrawer method
         Method putBillsInCashDrawer = CashDrawer.class.getMethod("putBillsInCashDrawer", int.class, int.class, int.class, int.class, int.class);
         putBillsInCashDrawer.invoke(cashDrawer, 1, 2, 3, 4, 5);
+        cashDrawer.setTotal();
 
         CashDrawer expectedCashDrawer = new CashDrawer();
         expectedCashDrawer.putBillsInCashDrawer(1, 2, 3, 4, 5);
+        expectedCashDrawer.setTotal();
 
+        assertEquals(expectedCashDrawer.getTotal(), cashDrawer.getTotal());
         assertEquals(expectedCashDrawer.getTwenty(), cashDrawer.getTwenty());
         assertEquals(expectedCashDrawer.getTen(), cashDrawer.getTen());
         assertEquals(expectedCashDrawer.getFive(), cashDrawer.getFive());
