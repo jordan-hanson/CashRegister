@@ -1,11 +1,11 @@
 import com.example.main.CashDrawer;
+import com.example.main.exceptions.InvalidAmountException;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CashDrawerTest {
 
@@ -70,7 +70,66 @@ public class CashDrawerTest {
 
     }
 
-    
+    @Test
+    public void putBillsInCashDrawer() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        CashDrawer cashDrawer = new CashDrawer();
+
+        // CashDrawer putBillsInCashDrawer method
+        Method putBillsInCashDrawer = CashDrawer.class.getMethod("putBillsInCashDrawer", int.class, int.class, int.class, int.class, int.class);
+        putBillsInCashDrawer.invoke(cashDrawer, 1, 2, 3, 4, 5);
+
+        CashDrawer expectedCashDrawer = new CashDrawer();
+        expectedCashDrawer.putBillsInCashDrawer(1, 2, 3, 4, 5);
+
+        assertEquals(expectedCashDrawer.getTwenty(), cashDrawer.getTwenty());
+        assertEquals(expectedCashDrawer.getTen(), cashDrawer.getTen());
+        assertEquals(expectedCashDrawer.getFive(), cashDrawer.getFive());
+        assertEquals(expectedCashDrawer.getTwo(), cashDrawer.getTwo());
+        assertEquals(expectedCashDrawer.getOne(), cashDrawer.getOne());
+    }
+
+    @Test
+    public void takeBillsFromCashDrawerWithValues() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        CashDrawer cashDrawer = new CashDrawer();
+
+        // Add Values to the CashDrawer to be able to Takes Bills From
+        Method putBillsInCashDrawer = CashDrawer.class.getMethod("putBillsInCashDrawer", int.class, int.class, int.class, int.class, int.class);
+        putBillsInCashDrawer.invoke(cashDrawer, 1, 2, 3, 4, 5);
+        putBillsInCashDrawer.invoke(cashDrawer, 1, 2, 3, 0, 5);
+
+        // CashDrawer takeBillsFromCashDrawer method
+        Method takeBillsFromCashDrawer = CashDrawer.class.getMethod("takeBillsFromCashDrawer", int.class, int.class, int.class, int.class, int.class);
+        takeBillsFromCashDrawer.invoke(cashDrawer, 1, 4, 3, 0, 8);
+
+        CashDrawer expectedCashDrawer = new CashDrawer();
+        expectedCashDrawer.putBillsInCashDrawer(1, 0, 3, 4, 2);
+
+        assertEquals(expectedCashDrawer.getTwenty(), cashDrawer.getTwenty());
+        assertEquals(expectedCashDrawer.getTen(), cashDrawer.getTen());
+        assertEquals(expectedCashDrawer.getFive(), cashDrawer.getFive());
+        assertEquals(expectedCashDrawer.getTwo(), cashDrawer.getTwo());
+        assertEquals(expectedCashDrawer.getOne(), cashDrawer.getOne());
+    }
+
+    @Test
+    public void takeBillsFromCashDrawer_Throws_InvalidAmountException() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        CashDrawer cashDrawer = new CashDrawer();
+
+        // Add Values to the CashDrawer to be able to Takes Bills From
+        Method putBillsInCashDrawer = CashDrawer.class.getMethod("putBillsInCashDrawer", int.class, int.class, int.class, int.class, int.class);
+        putBillsInCashDrawer.invoke(cashDrawer, 1, 2, 3, 4, 5);
+        putBillsInCashDrawer.invoke(cashDrawer, 1, 2, 3, 0, 5);
+
+        // CashDrawer takeBillsFromCashDrawer method
+        Method takeBillsFromCashDrawer = CashDrawer.class.getMethod("takeBillsFromCashDrawer", int.class, int.class, int.class, int.class, int.class);
+        takeBillsFromCashDrawer.invoke(cashDrawer, 1, 4, 3, 0, 8);
+
+        // CashDrawer takeBillsFromCashDrawer method
+        Method makeChange = CashDrawer.class.getMethod("makeChange", int.class);
+        
+
+    }
+
 }
 
 
