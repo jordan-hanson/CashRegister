@@ -70,6 +70,16 @@ public class CashDrawerTest {
         assertTrue(stringValue.contains(String.valueOf(TEST_TWO)));
         assertTrue(stringValue.contains(String.valueOf(TEST_ONE)));
 
+        // testing toString()
+        Method changeDrawerToStringMethod = CashDrawer.class.getMethod("changeDrawerString");
+        String changeToString = (String) changeDrawerToStringMethod.invoke(cashDrawer);
+        assertTrue(changeToString.contains("0 0 0 0 0"));
+        assertTrue(changeToString.contains(String.valueOf(TEST_TWENTY)));
+        assertTrue(changeToString.contains(String.valueOf(TEST_TEN)));
+        assertTrue(changeToString.contains(String.valueOf(TEST_FIVE)));
+        assertTrue(changeToString.contains(String.valueOf(TEST_TWO)));
+        assertTrue(changeToString.contains(String.valueOf(TEST_ONE)));
+
     }
 
     @Test
