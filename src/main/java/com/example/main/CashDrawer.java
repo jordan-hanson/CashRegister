@@ -145,12 +145,12 @@ public class CashDrawer {
             amountsToStore[4] = amountsToStore[4]+1;
         }
         boolean isReturnAvailable = validateReturn(changeAmount);
+
         if(isReturnAvailable){
             return amountsToStore;
         } else {
             throw new InvalidAmountException(changeAmount);
         }
-
     }
 
     public String changeDrawerString(){

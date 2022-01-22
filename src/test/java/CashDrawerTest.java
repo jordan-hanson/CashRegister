@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CashDrawerTest {
@@ -112,7 +114,7 @@ public class CashDrawerTest {
     }
 
     @Test
-    public void takeBillsFromCashDrawer_Throws_InvalidAmountException() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void takeBillsFromCashDrawer_Throws_InvalidAmountException() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, InvalidAmountException {
         CashDrawer cashDrawer = new CashDrawer();
 
         // Add Values to the CashDrawer to be able to Takes Bills From
@@ -126,7 +128,7 @@ public class CashDrawerTest {
 
         // CashDrawer takeBillsFromCashDrawer method
         Method makeChange = CashDrawer.class.getMethod("makeChange", int.class);
-        
+        assertThat(makeChange.toString(), containsString("InvalidAmountException"));
 
     }
 
