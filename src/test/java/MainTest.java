@@ -1,6 +1,7 @@
 import com.example.main.CashDrawer;
 import com.example.main.Main;
 import com.example.main.exceptions.CustomEmptyStringException;
+import com.example.main.exceptions.InsufficientAmountException;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -49,7 +50,7 @@ public class MainTest {
     private static void runMain() {
         try {
             Main.main(new String[]{});
-        } catch (Exception e) {
+        } catch (Exception | InsufficientAmountException e) {
             System.out.println(e.getMessage());
         }
     }

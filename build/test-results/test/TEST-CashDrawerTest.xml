@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CashDrawerTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-01-23T03:20:36" hostname="Jordans-MacBook-Pro.local" time="0.04">
+  <properties/>
+  <testcase name="gettersAndSettersTest()" classname="CashDrawerTest" time="0.035"/>
+  <testcase name="putBillsInCashDrawer()" classname="CashDrawerTest" time="0.001"/>
+  <testcase name="takeBillsFromCashDrawerWithValues()" classname="CashDrawerTest" time="0.001"/>
+  <testcase name="takeBillsFromCashDrawer_Throws_InvalidAmountException()" classname="CashDrawerTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
