@@ -1,6 +1,7 @@
 package com.example.main;
 
 import com.example.main.exceptions.CustomEmptyStringException;
+import com.example.main.exceptions.InsufficientAmountException;
 import com.example.main.exceptions.InvalidAmountException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +16,7 @@ public class Main {
 
 
 
-        public static void main(String[] args) throws InvalidAmountException, IOException {
+        public static void main(String[] args) throws InvalidAmountException, IOException, InsufficientAmountException {
                 SpringApplication.run(Main.class,
                         args);
                 String input;
@@ -117,7 +118,7 @@ public class Main {
 
         }
 
-        private static void displayResult(int number, CashDrawer cashDrawer, Scanner scanner) throws FileNotFoundException, IOException, InvalidAmountException {
+        private static void displayResult(int number, CashDrawer cashDrawer, Scanner scanner) throws FileNotFoundException, IOException, InvalidAmountException, InsufficientAmountException {
                 // display result
                 StringBuilder show = new StringBuilder("");
                 switch (number) {
@@ -135,11 +136,16 @@ public class Main {
                                 break;
                         case 3:
                                 int[] valuesToTake = processValues(scanner);
-                                cashDrawer.takeBillsFromCashDrawer(valuesToTake[0], valuesToTake[1], valuesToTake[2], valuesToTake[3], valuesToTake[4]);
-                                cashDrawer.setTotal();
-                                show.replace(0, show.length(), cashDrawer.toString());
-                                System.out.println(show);
+                                if(!cashDrawer.validateCurrentStatus(valuesToTake)){
+                                        cashDrawer.takeBillsFromCashDrawer(valuesToTake[0], valuesToTake[1], valuesToTake[2], valuesToTake[3], valuesToTake[4]);
+                                        cashDrawer.setTotal();
+                                        show.replace(0, show.length(), cashDrawer.toString());
+                                        System.out.println(show);
+                                } else {
+                                        throw new InsufficientAmountException();
+                                }
                                 break;
+
                         case 4:
                                 CashDrawer changeFromCashDrawer = new CashDrawer();
                                 System.out.println("What is the total amount in dollars you want in change? Example: For $10 input 10");
