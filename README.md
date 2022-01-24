@@ -49,12 +49,12 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 ### Features
         
-* show - Output the current number of each denomination in the register in format $<total> <# of 20’s> <# of 10’s> <# of 5’s> <# of 2’s> <# of 1’s> 
-* put - Adds some number of each denomination from the register, then print the current state. Same output format as show command. 
-* take - Removes some number of each denomination from the register, then print the current state. Same output format as show command. 
-* change - Returns change for some amount of money. Output should be denominations of change for the value asked in format <# of 20’s> <# of 
+* SHOW - Output the current number of each denomination in the register in format $<total> <# of 20’s> <# of 10’s> <# of 5’s> <# of 2’s> <# of 1’s> 
+* PUT - Adds some number of each denomination from the register, then print the current state. Same output format as show command. 
+* TAKE - Removes some number of each denomination from the register, then print the current state. Same output format as show command. 
+* CHANGE - Returns change for some amount of money. Output should be denominations of change for the value asked in format <# of 20’s> <# of 
           10’s> <# of 5’s> <# of 2’s> <# of 1’s>, e.g. 0 0 4 0 0. This should also deduct the resulting denominations from the register. 
-* quit Exit the program 
+* QUIT Exit the program 
 
 ### Endpoints
 Allows a cashregister initialize with default $20's, $10's, $5's, $2's, and $1's values to 0. It returns a response code 200 successful.
