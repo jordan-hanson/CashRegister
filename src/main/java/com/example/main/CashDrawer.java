@@ -153,6 +153,26 @@ public class CashDrawer {
         }
     }
 
+    public boolean validateCurrentStatus(int[] valuesToValidate){
+        boolean status = false;
+        if(this.twenty - valuesToValidate[0] < 0){
+            status = true;
+        }
+        if(this.ten - valuesToValidate[0] < 0){
+            status = true;
+        }
+        if(this.five - valuesToValidate[0] < 0){
+            status = true;
+        }
+        if(this.two - valuesToValidate[0] < 0){
+            status = true;
+        }
+        if(this.one - valuesToValidate[0] < 0){
+            status = true;
+        }
+        return status;
+    }
+
     public String changeDrawerString(){
         return " " + twenty +
                 " " + ten +
