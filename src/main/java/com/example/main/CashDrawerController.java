@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -15,28 +16,25 @@ public class CashDrawerController {
     @Autowired
     private CashDrawerService cashDrawerService;
 
-    @GetMapping(value = "/")
-    public String getTest(){
-        return "Your application is running";
+    @GetMapping(value = "/cashdrawers/cashdrawer/{cashdrawerid}")
+    public ResponseEntity<?> getCashDrawerById(@PathVariable long cashdrawerid)
+    {
+        CashDrawer cashDrawer = cashDrawerService.findCashDrawerById(cashdrawerid);
+        return new ResponseEntity<>(cashDrawer, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/cashdrawer")
-    public String getCashDrawer(@PathVariable CashDrawer cashDrawer)
-    {
-        return cashDrawer.toString();
-    }
 
-    @PostMapping(value = "/cashdrawer", consumes="applicaton/json")
-    public ResponseEntity<?> addNewCashDrawer(@RequestBody CashDrawer newCashDrawer)
+    @PostMapping(value = "/cashdrawers/cashdrawer", consumes="application/json")
+    public ResponseEntity<?> addNewCashDrawer(@RequestBody CashDrawer cashDrawer)
     {
-        newCashDrawer.setId(0);
-        newCashDrawer = cashDrawerService.save(newCashDrawer);
+        cashDrawer.setId(0);
+        cashDrawer = cashDrawerService.save(cashDrawer);
 
         // set the location header for the newly created cash drawer
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newCashDrawerURI = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{cashdrawerid}")
-                .buildAndExpand(newCashDrawer.getId())
+                .buildAndExpand(cashDrawer.getId())
                 .toUri();
         responseHeaders.setLocation(newCashDrawerURI);
         return new ResponseEntity<>(null,
@@ -45,18 +43,21 @@ public class CashDrawerController {
 
     }
 
-    @PutMapping(value = "/cashdrawer/{cashdrawerid}", consumes="application/json")
-    public ResponseEntity<String> addValueToCashDrawer(@PathVariable CashDrawer cashDrawer, @PathVariable long cashdrawerid)
+    @PutMapping(value = "/cashdrawers/cashdrawer/{cashdrawerid}/transactions/{typeOf}", consumes="application/json")
+    public ResponseEntity<String> addValueToCashDrawer(@RequestBody CashDrawer cashDrawer, @PathVariable String typeOf, @PathVariable long cashdrawerid)
     {
-        cashDrawerService.addAmounts(cashDrawer, cashdrawerid);
-        return new ResponseEntity<>(cashDrawer.toString(), HttpStatus.OK);
-    }
 
-    @PutMapping(value = "/cashdrawer/{id}", consumes="application/json")
-    public ResponseEntity<String> takeValueFromCashDrawer(@PathVariable CashDrawer cashDrawer, @PathVariable long id)
-    {
-        cashDrawerService.takeAmounts(cashDrawer, id);
-        return new ResponseEntity<>(cashDrawer.toString(),HttpStatus.OK);
+        switch(typeOf){
+            case "put":
+                CashDrawer updatedAmountsAddedToCashDrawer = cashDrawerService.addAmounts(cashDrawer, cashdrawerid);
+                return new ResponseEntity<>(updatedAmountsAddedToCashDrawer.toString(), HttpStatus.OK);
+            case "take":
+                CashDrawer updatedAmountsTakenFromCashDrawer = cashDrawerService.takeAmounts(cashDrawer, cashdrawerid);
+                return new ResponseEntity<>(updatedAmountsTakenFromCashDrawer.toString(),HttpStatus.OK);
+            default:
+                return new ResponseEntity<>("Not a valid type", HttpStatus.BAD_REQUEST);
+        }
+
     }
 
 }

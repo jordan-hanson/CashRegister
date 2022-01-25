@@ -1,16 +1,37 @@
 package com.example.main;
 
+import com.example.main.exceptions.InvalidAmountException;
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "cashdrawers")
 public class CashDrawer {
-    // Include Cash values to build a com.example.demo.CashDrawer
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotNull
+    @Column
     private int twenty;
+    @NotNull
+    @Column
     private int ten;
+    @NotNull
+    @Column
     private int five;
+    @NotNull
+    @Column
     private int two;
+    @NotNull
+    @Column
     private int one;
+    @NotNull
+    @Column
     private int total;
 
-    //Build out two constructors Include all properties, and a Default
 
     public CashDrawer() {
     }
@@ -23,6 +44,10 @@ public class CashDrawer {
         this.id = id;
     }
 
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
     public CashDrawer(int twenty, int ten, int five, int two, int one) {
         this.twenty = twenty;
         this.ten = ten;
@@ -30,8 +55,6 @@ public class CashDrawer {
         this.two = two;
         this.one = one;
     }
-    // Add Getter and Setter methods for the properties
-    // Include a putAmount, takeAmount
 
     public int getTwenty() {
         return twenty;
@@ -97,12 +120,49 @@ public class CashDrawer {
         this.one -= one;
     }
 
-    private boolean getAmountOfEachTotal(int changeAmount){
-        return false;
+    public boolean validateReturn(int changeLeftOver){
+        if(changeLeftOver > 0){
+            return false;
+        } return true;
     }
 
-    public void makeChange(int changeAmount){
-        getAmountOfEachTotal(changeAmount);
+    public int[] makeChange(int changeAmount) throws InvalidAmountException {
+        int[] amountsToStore = new int[5];
+        while(changeAmount >= 20 && this.twenty -1 > 0) {
+            changeAmount -= 20;
+            amountsToStore[0] = amountsToStore[0]+1;
+        }
+        while(changeAmount >= 10 && this.ten -1 > 0) {
+            changeAmount -= 10;
+            amountsToStore[1] = amountsToStore[1]+1;
+        }
+        while(changeAmount >= 5 && this.five -1 > 0) {
+            changeAmount -= 5;
+            amountsToStore[2] = amountsToStore[2]+1;
+        }
+        while(changeAmount >= 2 && this.two -1 > 0) {
+            changeAmount -= 2;
+            amountsToStore[3] = amountsToStore[3]+1;
+        }
+        while(changeAmount >= 1 && this.one -1 > 0) {
+            changeAmount -= 1;
+            amountsToStore[4] = amountsToStore[4]+1;
+        }
+        boolean isReturnAvailable = validateReturn(changeAmount);
+        if(isReturnAvailable){
+            return amountsToStore;
+        } else {
+            throw new InvalidAmountException(changeAmount);
+        }
+
+    }
+
+    public String changeDrawerString(){
+        return " " + twenty +
+                " " + ten +
+                " " + five +
+                " " + two +
+                " " + one;
     }
 
     @Override
