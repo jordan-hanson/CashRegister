@@ -1,3 +1,5 @@
+package com.example.main;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -12,6 +14,11 @@ public class CashDrawerController {
 
     @Autowired
     private CashDrawerService cashDrawerService;
+
+    @GetMapping(value = "/")
+    public String getTest(){
+        return "Your application is running";
+    }
 
     @GetMapping(value = "/cashdrawer")
     public String getCashDrawer(@PathVariable CashDrawer cashDrawer)
@@ -45,10 +52,10 @@ public class CashDrawerController {
         return new ResponseEntity<>(cashDrawer.toString(), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/cashdrawer/{cashdrawerid}", consumes="application/json")
-    public ResponseEntity<String> takeValueFromCashDrawer(@PathVariable CashDrawer cashDrawer, @PathVariable long cashdrawerid)
+    @PutMapping(value = "/cashdrawer/{id}", consumes="application/json")
+    public ResponseEntity<String> takeValueFromCashDrawer(@PathVariable CashDrawer cashDrawer, @PathVariable long id)
     {
-        cashDrawerService.takeAmounts(cashDrawer, cashdrawerid);
+        cashDrawerService.takeAmounts(cashDrawer, id);
         return new ResponseEntity<>(cashDrawer.toString(),HttpStatus.OK);
     }
 

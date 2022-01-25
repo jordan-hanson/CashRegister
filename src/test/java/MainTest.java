@@ -1,3 +1,4 @@
+import com.example.main.Main;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
