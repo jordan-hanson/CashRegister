@@ -46,7 +46,7 @@ public class CashDrawerService {
         CashDrawer currentCashDrawer = findCashDrawerById(cashdrawerid);
 
         // update each value from given cashDrawer values
-        currentCashDrawer.putBillsInRegister(
+        currentCashDrawer.putBillsInCashDrawer(
                 cashDrawer.getTwenty(),
                 cashDrawer.getTen(),
                 cashDrawer.getFive(),
@@ -64,7 +64,7 @@ public class CashDrawerService {
         CashDrawer currentCashDrawer = findCashDrawerById(id);
 
         // update each value from given cashDrawer values
-        currentCashDrawer.takeBillsFromRegister(
+        currentCashDrawer.takeBillsFromCashDrawer(
                 cashDrawer.getTwenty(),
                 cashDrawer.getTen(),
                 cashDrawer.getFive(),

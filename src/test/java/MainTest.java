@@ -1,9 +1,11 @@
+import com.example.main.CashDrawer;
 import com.example.main.Main;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.Method;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.containsString;
@@ -48,4 +50,5 @@ public class MainTest {
             System.out.println(e.getMessage());
         }
     }
+
 }
