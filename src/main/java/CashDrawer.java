@@ -70,6 +70,22 @@ public class CashDrawer {
         this.total = (20 * twenty)  + (10 * ten) + (5 * five) + (2 * two) + (1 * one);
     }
 
+    public void putBillsInRegister(int twenty, int ten, int five, int two, int one){
+        this.twenty += twenty;
+        this.ten += ten;
+        this.five += five;
+        this.two += two;
+        this.one += one;
+    }
+
+    public void takeBillsFromRegister(int twenty, int ten, int five, int two, int one){
+        this.twenty -= twenty;
+        this.ten -= ten;
+        this.five -= five;
+        this.two -= two;
+        this.one -= one;
+    }
+
     @Override
     public String toString() {
         return "$" + total +

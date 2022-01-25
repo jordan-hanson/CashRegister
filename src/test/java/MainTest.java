@@ -37,8 +37,6 @@ public class MainTest {
         // Test the "ready" print is contained in the byteOutputStream
         assertThat(output, containsString("ready"));
 
-        // Test the total amounts are initialized with $0 0 0 0 0
-        assertThat(output, containsString("$0 0 0 0 0"));
     }
     private static void runMain() {
         try {
