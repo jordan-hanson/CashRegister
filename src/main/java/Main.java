@@ -7,7 +7,6 @@ public class Main {
 
                 System.out.println("ready");
                 System.out.println("");
-                // TODO update the property access modifiers of each class object
 
                 //Initialize a CashDrawer Object: All int values default to 0
                 CashDrawer cashDrawer = new CashDrawer();
